@@ -1,0 +1,18 @@
+<form method="POST" class="form-add-post" action="/posts">
+    <input type="text" name="picture" placeholder="url of picture">
+    <input type="text" name="title" placeholder="title">
+    <button type="submit">add new post</button>
+</form>
+
+<div class="block-inst-posts">
+    {{#if posts.length}}
+        {{#each posts}}
+            <div data-id="{{this._id}}" class="post-inst">
+                <img src="{{this.picture}}" alt="{{this.title}}" class="img-post-inst">
+                <h3 class="post-inst-title">{{this.title}}</h3>
+            </div>
+        {{/each}}
+    {{else}}
+        <div class="no-post-inst">Постов нет</div>
+    {{/if}}
+</div>
