@@ -1,15 +1,24 @@
-<form method="POST" class="form-add-post" action="/posts">
-    <input type="text" name="picture" placeholder="url of picture">
-    <input type="text" name="title" placeholder="title">
-    <button type="submit">add new post</button>
+<form name="newPostForm" method="POST" class="form-add-post" action="/posts">
+    <input class="newPostForm-input" type="text" name="picture" placeholder="url of picture">
+    <input class="newPostForm-input" type="text" name="title" placeholder="title">
+    <button class="newPostForm-button-submit" type="submit">add new post</button>
 </form>
 
-<div class="block-inst-posts">
+<div data-postscontainer class="block-inst-posts">
     {{#if posts.length}}
         {{#each posts}}
             <div data-id="{{this._id}}" class="post-inst">
-                <img src="{{this.picture}}" alt="{{this.title}}" class="img-post-inst">
-                <h3 class="post-inst-title">{{this.title}}</h3>
+                <div class="wrapper-posts-picture">
+                    <img class="posts-picture-icon" src="{{this.picture}}" alt="{{this.title}}" class="img-post-inst">
+                </div>
+                <div class="wrapper-posts-actions">
+                    <h3 class="post-inst-title">{{this.title}}</h3>
+                    <div class="wrapper-actions">
+                        <p data-likes class="card-text">Likes:{{this.likes}}</p>
+                        {{!-- <a href="/posts/{{this._id}}">read mode</a> --}}
+                        <button class="btn-delete">delete</button>
+                    </div>
+                </div>
             </div>
         {{/each}}
     {{else}}
