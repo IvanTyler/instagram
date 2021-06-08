@@ -40,9 +40,27 @@
     margin-right: 15px;
 }
 
-.nav-menu-link, .nav-sign-item{
-    color: #444;
+.nav-menu-item, .nav-sign-item{
     font-size: 20px;
+    line-height: 20px;
+    transition: 0.2s;
+}
+
+.nav-menu-link{
+    color: #444;
+    transition: 0.2s;
+}
+
+.nav-menu-link:hover{
+    color: #1991eb;
+}
+
+.user-name{
+    display: inline-block;
+    color: #009688;
+    font-size: 22px;
+    border-right: solid 2px;
+    padding-right: 15px;
 }
 
 .newPostForm{
@@ -53,7 +71,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 30px;
 }
 
 .main{

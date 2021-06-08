@@ -25,7 +25,13 @@ app.set('view engine', 'hbs')
 app.set('views', path.join(__dirname, 'views'))
 hbs.registerPartials(path.join(__dirname, 'views', 'partials'))
 
-hbs.registerHelper("getTime", () => new hbs.SafeString(`<li class="nav-menu-item"><a class="nav-menu-link" href="/posts">Добавление постов</a></li>`));
+
+hbs.registerHelper("linkAddingPosts", () => {
+    return new hbs.SafeString(`<li class="nav-menu-item"><a class="nav-menu-link" href="/posts">Добавление постов</a></li>`)
+});
+hbs.registerHelper("logOut", () => {
+    return new hbs.SafeString(`<li class="nav-sign-item"><a class="nav-menu-link" href="/user/logout">Выход</a></li>`)
+});
 
 app.use(morgan("dev"));
 app.use(express.static('public'));

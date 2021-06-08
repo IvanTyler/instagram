@@ -2,17 +2,23 @@
     <div class="container container-header">
         <nav class="nav-header">
             <ul class="nav-menu">
-                <li class="nav-menu-item">{{username}}</li>
+                <li class="nav-menu-item">
+                    <span class="user-name">{{username}}</span>
+                </li>
                 <li class="nav-menu-item"><a class="nav-menu-link" href="/">Главная</a></li>
                 {{#if username}}
-                {{getTime}}
+                    {{linkAddingPosts}}
                 {{/if}}
             </ul>
 
             <ul class="nav-dataUser-sign">
+                {{#unless username}}
                 <li class="nav-sign-item"><a class="nav-menu-link" href="/user/signup">Регистация</a></li>
                 <li class="nav-sign-item"><a class="nav-menu-link" href="/user/login">Авторизация</a></li>
-                <li class="nav-sign-item"><a class="nav-menu-link" href="#">Выход</a></li>
+                {{/unless}}
+                {{#if username}}
+                    {{logOut}}
+                {{/if}}
             </ul>
         </nav>
     </div>

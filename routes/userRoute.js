@@ -24,6 +24,25 @@ router.post('/signup', async (req, res) => {
     return res.status(418).redirect('/user/signup')
 })
 
+router.post('/login', async (req, res) => {
+    const email = req.body.email
+    const password = req.body.password
+    if (email && password) {
+        const currentUser = await Users.findOne({email, password})
+        if (currentUser) {
+            req.session.user = { id: currentUser._id, name : currentUser.name }
+            return res.redirect('/')
+        }
+    }
+    return res.redirect('/user/login')
+})
+
+router.get('/logout', (req, res) => {
+    req.session.destroy()
+    res.clearCookie();
+    return res.redirect('/user/login')
+})
+
 
 
 module.exports = router;
