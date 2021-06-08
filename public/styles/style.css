@@ -22,18 +22,25 @@
     display: flex;
     align-items: center;
     height: 50px;
+    max-width: 1300px;
 }
 
-.nav-menu{
+.nav-header{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.nav-menu, .nav-dataUser-sign{
     display: flex;
     flex-wrap: wrap;
 }
 
-.nav-menu-item:not(:last-child){
+.nav-menu-item:not(:last-child), .nav-sign-item:not(:last-child){
     margin-right: 15px;
 }
 
-.nav-menu-link{
+.nav-menu-link, .nav-sign-item{
     color: #444;
     font-size: 20px;
 }
@@ -53,7 +60,8 @@
     margin-top: 35px;
 }
 
-.form-add-post{
+.form-add-post,
+.form-registration{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -66,12 +74,14 @@
     border-radius: 7px;
 }
 
-.newPostForm-input, .newPostForm-button-submit {
+.newPostForm-input, .newPostForm-button-submit,
+.form-registr-input, .form-registr-button {
     margin-top: 15px;
     width: 250px;
     height: 40px;
     padding: 0 15px;
     border-radius: 20px;
+    font-size: 16px;
     outline: none;
     border: none;
 }
@@ -91,7 +101,8 @@
     object-fit: cover;
 }
 
-.newPostForm-input{
+.newPostForm-input,
+.form-registr-input{
     border: solid 1px #000;
 }
 
@@ -101,13 +112,22 @@
 
 .card-text{
     margin-right: 10px;
+    cursor: pointer;
 }
 
 .wrapper-posts-actions{
     padding: 15px;
 }
 
-.newPostForm-button-submit{
+.newPostForm-button-submit,
+.form-registr-button{
     background-color: #1991eb;
     color: #fff;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.newPostForm-button-submit:hover,
+.form-registr-button:hover{
+    box-shadow: 0 0 4px rgba(25, 145, 235, 1);
 }
