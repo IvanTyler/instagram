@@ -2,6 +2,7 @@ console.log('work')
 
 const $newPostForm = document.forms.newPostForm;
 const $postContainer = document.querySelector('[data-postscontainer]');
+const $userId = document.querySelector('.newPostForm-button-submit').dataset.id
 
 $newPostForm.addEventListener('submit', async (e) => {
     e.preventDefault()
@@ -14,7 +15,7 @@ $newPostForm.addEventListener('submit', async (e) => {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({...formData, author: $userId})
     })
 
     const dataFromServer = await response.json()
@@ -24,6 +25,7 @@ $newPostForm.addEventListener('submit', async (e) => {
     $postContainer.insertAdjacentHTML('afterbegin', newPostHTML)
 
     console.log(dataFromServer)
+    window.location = '/posts'
 })
 
 function createHTMLforNewPost(newPost) {
@@ -63,7 +65,7 @@ $postContainer.addEventListener('click', async (event) => {
 })
 
 $postContainer.addEventListener('click', async (event) => {
-    if(event.target.tagName === 'BUTTON'){ 
+    if(event.target.name === 'delete-post'){ 
         const $postWrapper = event.target.closest('[data-id]')
         const postId = $postWrapper.dataset.id
         const response = await fetch(`/posts/${postId}`, {
@@ -73,5 +75,23 @@ $postContainer.addEventListener('click', async (event) => {
         if(response.status === 200){
             $postWrapper.remove()
         }
+    }
+})
+
+$postContainer.addEventListener('click', async (event) => {
+    event.preventDefault()
+    const titlePost = document.getElementById(`title-${event.target.dataset.id}`)
+    if(event.target.name === 'edit-post'){
+        titlePost.removeAttribute('readonly')
+    }
+    if(event.target.name === 'save-post'){
+        titlePost.setAttribute('readonly', '')
+        const response = await fetch(`/${event.target.dataset.id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ title: titlePost.value })
+        })
     }
 })

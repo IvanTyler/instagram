@@ -1,7 +1,7 @@
 <form name="newPostForm" method="POST" class="form-add-post" action="/posts">
     <input class="newPostForm-input" type="text" name="picture" placeholder="url of picture">
     <input class="newPostForm-input" type="text" name="title" placeholder="title">
-    <button class="newPostForm-button-submit" type="submit">add new post</button>
+    <button class="newPostForm-button-submit" name="add-post" type="submit" data-id="{{userId}}">add new post</button>
 </form>
 
 <div data-postscontainer class="block-inst-posts">
@@ -12,11 +12,12 @@
                     <img class="posts-picture-icon" src="{{this.picture}}" alt="{{this.title}}" class="img-post-inst">
                 </div>
                 <div class="wrapper-posts-actions">
-                    <h3 class="post-inst-title">{{this.title}}</h3>
+                    <input id="title-{{this._id}}" class="post-inst-title" value="{{this.title}}" readonly>
                     <div class="wrapper-actions">
                         <p data-likes class="card-text">Likes:{{this.likes}}</p>
-                        {{!-- <a href="/posts/{{this._id}}">read mode</a> --}}
-                        <button class="btn-delete">delete</button>
+                        <button class="btn-delete delete-post" name="delete-post">delete</button>
+                        <button data-id="{{this._id}}" name="edit-post" class="edit-post">edit</button>
+                        <button data-id="{{this._id}}" name="save-post" class="save-post">save</button>
                     </div>
                 </div>
             </div>

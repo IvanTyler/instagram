@@ -32,6 +32,19 @@ hbs.registerHelper("linkAddingPosts", () => {
 hbs.registerHelper("logOut", () => {
     return new hbs.SafeString(`<li class="nav-sign-item"><a class="nav-menu-link" href="/user/logout">Выход</a></li>`)
 });
+// hbs.registerHelper("editDelete", (sessionId, userId) => {
+//     if (sessionId === String(userId)) {
+//         console.log('ok')
+//         return new hbs.SafeString(`
+//         <div>
+//         <button class="btn-delete delete-post">rename</button>
+//     <button class="btn edit-post">rename</button> 
+//         </div>
+//     `)
+//     }
+// });
+
+
 
 app.use(morgan("dev"));
 app.use(express.static('public'));
@@ -54,6 +67,7 @@ app.use(sessions({
 app.use((req, res, next) => {
     if (req.session.user) {
         res.locals.username = req.session.user.name;
+        res.locals.userId = req.session.user.id;
     }
     next()
 })

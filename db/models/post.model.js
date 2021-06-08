@@ -12,7 +12,8 @@ const postSchema = mongoose.Schema({
   likes: {
     type: Number,
     default: 0,
-  }
+  },
+  author: {type: mongoose.Schema.Types.ObjectId, ref: 'Users'}
 })
 
 module.exports = mongoose.model('Post', postSchema)

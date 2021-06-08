@@ -3,7 +3,8 @@ const Post = require('../db/models/post.model')
 const router = Router() // вызываем метод router
 
 router.get('/', async (req, res) => {
-    const allPosts = await Post.find().sort({ _id: -1 })
+    const allPosts = await Post.find({author: req.session.user.id}).sort({ _id: -1 })
+    console.log(allPosts)
     res.render('posts', { posts: allPosts })
 })
 
@@ -21,8 +22,9 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
     const dataFromClient = req.body
-    console.log(dataFromClient)
+    console.log('data front >>', dataFromClient)
     const newPost = await Post.create(dataFromClient)
+    // newPost.author = req.session.user.id
     // res.redirect('/posts/')
     res.json(newPost)
 })

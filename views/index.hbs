@@ -1,1 +1,19 @@
-Главная страница
+<div data-postscontainer class="block-inst-posts">
+    {{#if posts.length}}
+        {{#each posts}}
+            <div data-id="{{this._id}}" class="post-inst">
+                <div class="wrapper-posts-picture">
+                    <img class="posts-picture-icon" src="{{this.picture}}" alt="{{this.title}}" class="img-post-inst">
+                </div>
+                <div class="wrapper-posts-actions">
+                    <h3 class="post-inst-title">{{this.title}}</h3>
+                    <div class="wrapper-actions">
+                        <p data-likes class="card-text">Likes:{{this.likes}}</p>
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    {{else}}
+        <div class="no-post-inst">Постов нет</div>
+    {{/if}}
+</div>
